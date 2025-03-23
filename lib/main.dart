@@ -26,15 +26,6 @@ class _HomeStatefulState extends State<HomeStateful> {
     Note(subject: "whys?", text: "terus menerus mempertanyakan pemikiran kita sendiri pasti sangat melelahkan"),
   ];
 
-  final myController = TextEditingController();
-
-  @override
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    myController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,22 +40,54 @@ class _HomeStatefulState extends State<HomeStateful> {
         backgroundColor: Colors.grey[800],
       ),
       floatingActionButton: FloatingActionButton(
-        // When the user presses the button, show an alert dialog containing
-        // the text that the user has entered into the text field.
+        backgroundColor: Colors.amber,
+        foregroundColor: Colors.white,
+        shape: CircleBorder(),
         onPressed: () {
+          final subjectController = TextEditingController(text: "");
+          final textController = TextEditingController(text: "");
+
           showDialog(
             context: context,
-            builder: (context) {
+            builder: (context){
               return AlertDialog(
-                // Retrieve the text that the user has entered by using the
-                // TextEditingController.
-                content: Text(myController.text),
+                title: Text("Add Note"),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextField(
+                      controller: subjectController,
+                      decoration: InputDecoration(labelText: "Subject"),
+                    ),
+                    TextField(
+                      controller: textController,
+                      decoration: InputDecoration(labelText: "Text"),
+                    ),
+                  ],
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text("Batal"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      setState(() {
+                        notes.add(Note(subject: subjectController.text, text: textController.text));
+                      });
+                      Navigator.pop(context);
+                    },
+                    child: Text("Simpan"),
+                  ),
+                ],
               );
-            },
+            }
           );
         },
-        tooltip: 'Show me the value!',
-        child: const Icon(Icons.text_fields),
+        tooltip: "tambahkan notes",
+        child: Icon(Icons.note_add_outlined),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -127,12 +150,7 @@ class _HomeStatefulState extends State<HomeStateful> {
                   },
                 )).toList(),
               ),
-              TextField(
-                controller: myController,
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
+              SizedBox(height: 60,)
             ],
           ),
         ),

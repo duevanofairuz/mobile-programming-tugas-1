@@ -41,8 +41,32 @@ class NoteCard extends StatelessWidget {
             Row(
               children: [
                 TextButton.icon(
-                  onPressed: delete,
-                  icon: Icon(Icons.delete, color: Colors.red,),
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context){
+                        return AlertDialog(
+                          title: Text("Delete this note?"),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text("No"),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                delete?.call();
+                                Navigator.pop(context);
+                              },
+                              child: Text("Yes"),
+                            ),
+                          ],
+                        );
+                      }
+                    );
+                  },
+                  icon: Icon(Icons.delete, color: Colors.white,),
                   label: Text("Hapus", style: TextStyle(fontSize: 18, color: Colors.white),),
                 ),
                 TextButton.icon(
