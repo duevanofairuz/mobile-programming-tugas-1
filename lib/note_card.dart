@@ -8,12 +8,13 @@ class NoteCard extends StatelessWidget {
 
   final Note note;
   final VoidCallback? delete;
-  const NoteCard({super.key, required this.note, required this.delete});
+  final VoidCallback? edit;
+  const NoteCard({super.key, required this.note, required this.delete, required this.edit});
 
   @override
   Widget build(BuildContext context) {
     return Card.outlined(
-      // margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
+      margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
       color: Colors.grey[900],
       child: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -37,10 +38,19 @@ class NoteCard extends StatelessWidget {
               ),
             ),
             SizedBox(height: 8.0,),
-            TextButton.icon(
-              onPressed: delete,
-              icon: Icon(Icons.delete, color: Colors.red,),
-              label: Text("Hapus", style: TextStyle(fontSize: 18, color: Colors.white),),
+            Row(
+              children: [
+                TextButton.icon(
+                  onPressed: delete,
+                  icon: Icon(Icons.delete, color: Colors.red,),
+                  label: Text("Hapus", style: TextStyle(fontSize: 18, color: Colors.white),),
+                ),
+                TextButton.icon(
+                  onPressed: edit,
+                  icon: Icon(Icons.edit, color: Colors.green,),
+                  label: Text("Edit", style: TextStyle(fontSize: 18, color: Colors.white),),
+                ),
+              ],
             ),
           ],
         ),
