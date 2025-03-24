@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'note.dart';
 import 'note_card.dart';
+import 'alert_dialog_card.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -50,84 +51,28 @@ class _HomeStatefulState extends State<HomeStateful> {
           showDialog(
             context: context,
             builder: (context){
-              return AlertDialog(
-                title: Text("Add Note", style: TextStyle(color: Colors.white),),
-                backgroundColor: Colors.grey[900],
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    TextField(
-                      controller: subjectController,
-                      cursorColor: Colors.amber,
-                      style: TextStyle(color: Colors.white),
-                      decoration: InputDecoration(
-                        labelText: "Subject",
-                        labelStyle: TextStyle(color: Colors.white),
-                        hintStyle: TextStyle(color: Colors.white),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.amber),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
+              return AlertDialogCard(
+                title: "Add Note",
+                subjectController: subjectController,
+                textController: textController,
+                confirmText: "Save",
+                cancelText: "Cancel",
+                onConfirm: () {
+                  setState(() {
+                    notes.add(Note(subject: subjectController.text, text: textController.text));
+                  });
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: const Text('Note Added!'),
+                      action: SnackBarAction(
+                        label: 'Ok',
+                        onPressed: () {
+                          // Code to execute.
+                        },
                       ),
                     ),
-                    SizedBox(height: 12,),
-                    TextField(
-                      controller: textController,
-                      cursorColor: Colors.amber,
-                      style: TextStyle(color: Colors.white),
-                      keyboardType: TextInputType.multiline,
-                      textInputAction: TextInputAction.newline,
-                      minLines: 2,
-                      maxLines: 10,
-                      decoration: InputDecoration(
-                        labelText: "Text",
-                        labelStyle: TextStyle(color: Colors.white,),
-
-                        hintStyle: TextStyle(color: Colors.white),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.amber),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text("Batal", style: TextStyle(color: Colors.amber),),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        notes.add(Note(subject: subjectController.text, text: textController.text));
-                      });
-                      Navigator.pop(context);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: const Text('Note added!'),
-                          action: SnackBarAction(
-                            label: 'Ok',
-                            onPressed: () {
-                              // Code to execute.
-                            },
-                          ),
-                        ),
-                      );
-                    },
-                    child: Text("Simpan", style: TextStyle(color: Colors.amber),),
-                  ),
-                ],
+                  );
+                }
               );
             }
           );
@@ -157,85 +102,29 @@ class _HomeStatefulState extends State<HomeStateful> {
                     showDialog(
                       context: context,
                       builder: (context) {
-                        return AlertDialog(
-                          title: Text("Edit Note", style: TextStyle(color: Colors.white),),
-                          backgroundColor: Colors.grey[900],
-                          content: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              TextField(
-                                controller: subjectController,
-                                cursorColor: Colors.amber,
-                                style: TextStyle(color: Colors.white),
-                                decoration: InputDecoration(
-                                  labelText: "Subject",
-                                  labelStyle: TextStyle(color: Colors.white),
-                                  hintStyle: TextStyle(color: Colors.white),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.amber),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
+                        return AlertDialogCard(
+                          title: "Edit Note",
+                          subjectController: subjectController,
+                          textController: textController,
+                          confirmText: "Save",
+                          cancelText: "Cancel",
+                          onConfirm: () {
+                            setState(() {
+                              note.subject = subjectController.text;
+                              note.text = textController.text;
+                            });
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: const Text('Changes Saved!'),
+                                action: SnackBarAction(
+                                  label: 'Ok',
+                                  onPressed: () {
+                                    // Code to execute.
+                                  },
                                 ),
                               ),
-                              SizedBox(height: 12,),
-                              TextField(
-                                controller: textController,
-                                cursorColor: Colors.amber,
-                                style: TextStyle(color: Colors.white),
-                                keyboardType: TextInputType.multiline,
-                                textInputAction: TextInputAction.newline,
-                                minLines: 2,
-                                maxLines: 10,
-                                decoration: InputDecoration(
-                                  labelText: "Text",
-                                  labelStyle: TextStyle(color: Colors.white,),
-
-                                  hintStyle: TextStyle(color: Colors.white),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.white),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.amber),
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: Text("Batal", style: TextStyle(color: Colors.amber),),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  note.subject = subjectController.text;
-                                  note.text = textController.text;
-                                });
-                                Navigator.pop(context);
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: const Text('Change saved!'),
-                                    action: SnackBarAction(
-                                      label: 'Ok',
-                                      onPressed: () {
-                                        // Code to execute.
-                                      },
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: Text("Simpan", style: TextStyle(color: Colors.amber),),
-                            ),
-                          ],
+                            );
+                          }
                         );
                       },
                     );
