@@ -19,11 +19,11 @@ class _HomeStatefulState extends State<HomeStateful> {
   int count = 0;
 
   List<Note> notes = [
-    Note(subject: "ide2 konyol", text: "jika kamu mengukur nilai produktifitas hanya dari berapa kerjaan yang berhasil terselesaikan maka dirimu akan selalu merasa worthless, (ibarat mountain without summit), "),
+    Note(subject: "produktivitas?", text: "jika kamu mengukur nilai produktifitas hanya dari berapa kerjaan yang berhasil terselesaikan maka dirimu akan selalu merasa worthless, (ibarat mountain without summit), "),
     Note(subject: "lessons", text: "if you determine your self worth by how much you get done, you will be forever worthless"),
     Note(subject: "whys?", text: "terus menerus mempertanyakan pemikiran kita sendiri pasti sangat melelahkan"),
-    Note(subject: "whys?", text: "terus menerus mempertanyakan pemikiran kita sendiri pasti sangat melelahkan"),
-    Note(subject: "whys?", text: "terus menerus mempertanyakan pemikiran kita sendiri pasti sangat melelahkan"),
+    Note(subject: "malas", text: "ada yang namanya fase produktif dan fase kreatif/malas, dengan menerima fase kreatif kita bisa lebih tenang dan berpikir lebih jernih ketika kembali ke fase produktif"),
+    Note(subject: "gila kerja", text: "kerja keras itu tidak ada artinya jika kita kehilangan diri kita di dalam proses nya"),
   ];
 
   @override
