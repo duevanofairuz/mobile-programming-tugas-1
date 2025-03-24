@@ -51,17 +51,52 @@ class _HomeStatefulState extends State<HomeStateful> {
             context: context,
             builder: (context){
               return AlertDialog(
-                title: Text("Add Note"),
+                title: Text("Add Note", style: TextStyle(color: Colors.white),),
+                backgroundColor: Colors.grey[900],
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     TextField(
                       controller: subjectController,
-                      decoration: InputDecoration(labelText: "Subject"),
+                      cursorColor: Colors.amber,
+                      style: TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        labelText: "Subject",
+                        labelStyle: TextStyle(color: Colors.white),
+                        hintStyle: TextStyle(color: Colors.white),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.amber),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
                     ),
+                    SizedBox(height: 12,),
                     TextField(
                       controller: textController,
-                      decoration: InputDecoration(labelText: "Text"),
+                      cursorColor: Colors.amber,
+                      style: TextStyle(color: Colors.white),
+                      keyboardType: TextInputType.multiline,
+                      textInputAction: TextInputAction.newline,
+                      minLines: 2,
+                      maxLines: 10,
+                      decoration: InputDecoration(
+                        labelText: "Text",
+                        labelStyle: TextStyle(color: Colors.white,),
+
+                        hintStyle: TextStyle(color: Colors.white),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.amber),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -70,7 +105,7 @@ class _HomeStatefulState extends State<HomeStateful> {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: Text("Batal"),
+                    child: Text("Batal", style: TextStyle(color: Colors.amber),),
                   ),
                   TextButton(
                     onPressed: () {
@@ -78,8 +113,19 @@ class _HomeStatefulState extends State<HomeStateful> {
                         notes.add(Note(subject: subjectController.text, text: textController.text));
                       });
                       Navigator.pop(context);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: const Text('Note added!'),
+                          action: SnackBarAction(
+                            label: 'Ok',
+                            onPressed: () {
+                              // Code to execute.
+                            },
+                          ),
+                        ),
+                      );
                     },
-                    child: Text("Simpan"),
+                    child: Text("Simpan", style: TextStyle(color: Colors.amber),),
                   ),
                 ],
               );
@@ -112,17 +158,52 @@ class _HomeStatefulState extends State<HomeStateful> {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          title: Text("Edit Note"),
+                          title: Text("Edit Note", style: TextStyle(color: Colors.white),),
+                          backgroundColor: Colors.grey[900],
                           content: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               TextField(
                                 controller: subjectController,
-                                decoration: InputDecoration(labelText: "Subject"),
+                                cursorColor: Colors.amber,
+                                style: TextStyle(color: Colors.white),
+                                decoration: InputDecoration(
+                                  labelText: "Subject",
+                                  labelStyle: TextStyle(color: Colors.white),
+                                  hintStyle: TextStyle(color: Colors.white),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.white),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.amber),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
                               ),
+                              SizedBox(height: 12,),
                               TextField(
                                 controller: textController,
-                                decoration: InputDecoration(labelText: "Text"),
+                                cursorColor: Colors.amber,
+                                style: TextStyle(color: Colors.white),
+                                keyboardType: TextInputType.multiline,
+                                textInputAction: TextInputAction.newline,
+                                minLines: 2,
+                                maxLines: 10,
+                                decoration: InputDecoration(
+                                  labelText: "Text",
+                                  labelStyle: TextStyle(color: Colors.white,),
+
+                                  hintStyle: TextStyle(color: Colors.white),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.white),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.amber),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -131,7 +212,7 @@ class _HomeStatefulState extends State<HomeStateful> {
                               onPressed: () {
                                 Navigator.pop(context);
                               },
-                              child: Text("Batal"),
+                              child: Text("Batal", style: TextStyle(color: Colors.amber),),
                             ),
                             TextButton(
                               onPressed: () {
@@ -140,8 +221,19 @@ class _HomeStatefulState extends State<HomeStateful> {
                                   note.text = textController.text;
                                 });
                                 Navigator.pop(context);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: const Text('Change saved!'),
+                                    action: SnackBarAction(
+                                      label: 'Ok',
+                                      onPressed: () {
+                                        // Code to execute.
+                                      },
+                                    ),
+                                  ),
+                                );
                               },
-                              child: Text("Simpan"),
+                              child: Text("Simpan", style: TextStyle(color: Colors.amber),),
                             ),
                           ],
                         );

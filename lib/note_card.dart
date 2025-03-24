@@ -32,6 +32,8 @@ class NoteCard extends StatelessWidget {
             SizedBox(height: 6.0,),
             SelectableText(
               note.text,
+              minLines: 1,
+              maxLines: 8,
               style: TextStyle(
                 fontSize: 18,
                 color: Colors.white,
@@ -46,32 +48,44 @@ class NoteCard extends StatelessWidget {
                       context: context,
                       builder: (context){
                         return AlertDialog(
-                          title: Text("Delete this note?"),
+                          title: Text("Delete this note?", style: TextStyle(color: Colors.white),),
+                          backgroundColor: Colors.grey[900],
                           actions: [
                             TextButton(
                               onPressed: () {
                                 Navigator.pop(context);
                               },
-                              child: Text("No"),
+                              child: Text("No", style: TextStyle(color: Colors.amber),),
                             ),
                             TextButton(
                               onPressed: () {
                                 delete?.call();
                                 Navigator.pop(context);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: const Text('Note deleted!'),
+                                    action: SnackBarAction(
+                                      label: 'Ok',
+                                      onPressed: () {
+                                        // Code to execute.
+                                      },
+                                    ),
+                                  ),
+                                );
                               },
-                              child: Text("Yes"),
+                              child: Text("Yes", style: TextStyle(color: Colors.amber),),
                             ),
                           ],
                         );
                       }
                     );
                   },
-                  icon: Icon(Icons.delete, color: Colors.white,),
+                  icon: Icon(Icons.delete, color: Colors.redAccent,),
                   label: Text("Hapus", style: TextStyle(fontSize: 18, color: Colors.white),),
                 ),
                 TextButton.icon(
                   onPressed: edit,
-                  icon: Icon(Icons.edit, color: Colors.green,),
+                  icon: Icon(Icons.edit, color: Colors.amber,),
                   label: Text("Edit", style: TextStyle(fontSize: 18, color: Colors.white),),
                 ),
               ],
