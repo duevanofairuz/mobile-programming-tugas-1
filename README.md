@@ -1,7 +1,7 @@
 # mobile-programming-tugas-1
 
 **Duevano Fairuz Pandya - 5025211052**<br>
-demo emulator : [video](https://drive.google.com/file/d/13qUbmV_Sro7hSjQenimiMV8a35d91YWo/view?usp=sharing)
+demo emulator : [video](https://youtu.be/A_-bTjHLo-Y)
 
 Keepnote<br>
 a simple note application which able to do create, read, update, and delete, 
